@@ -1,44 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Tip calculator app</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <script defer src="./js/script.js"></script>
-</head>
-<body>
-  <main>
-    <section>
-    <label for="total">Bill</label>
-    <input id="total" type="text" name="total" onkeyup="annotate()">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-    <label for="percentage">Select Tip %</label>
-    <button id="percentage">5%</button>
-    <button id="percentage">10%</button>
-    <button id="percentage">15%</button>
-    <button id="percentage">25%</button>
-    <button id="percentage">50%</button>
-    <button>Custom</button>
+    <title>Tip calculator app</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script defer src="./js/script.js"></script>
+  </head>
+  <body>
+    <main>
+      <article>
+        <section>
+          <label for="total">Bill</label>
+          <input id="total" type="text" name="total" onkeyup="annotate()" />
 
-    <label for="">Number of People</label>
-    <input name="numPeople" type="number" id="numPeople" onkeyup="annotate()">
-    </section>
+          <label for="percentage">Select Tip %</label>
+          <button id="percentage">5%</button>
+          <button id="percentage">10%</button>
+          <button id="percentage">15%</button>
+          <button id="percentage">25%</button>
+          <button id="percentage">50%</button>
+          <button>Custom</button>
 
-  <section>
-    <p>Tip Amount</p>
-    <p>/ person</p>
-    <p id="tipAmount">0.00</p>
+          <label for="">Number of People</label>
+          <input
+            name="numPeople"
+            type="number"
+            id="numPeople"
+            onkeyup="annotate()"
+          />
+        </section>
 
-    <p>Total</p>
-    <p>/ person</p>
-    <p id="displayedAmount">0.00</p>
+        <section>
+          <p>Tip Amount</p>
+          <p>/ person</p>
+          <p id="tipAmount">0.00</p>
 
-    <button>Reset</button>
-  </section>
-  </main>
-</body>
+          <p>Total</p>
+          <p>/ person</p>
+          <p id="displayedAmount">0.00</p>
+
+          <button>Reset</button>
+        </section>
+      </article>
+    </main>
+  </body>
 </html>
