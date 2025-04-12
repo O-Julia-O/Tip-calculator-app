@@ -21,14 +21,14 @@
       <article>
         <section>
           <label for="bill">Bill</label>
-          <input id="bill" type="text" name="bill" onkeyup="annotate()" />
+          <input id="bill" type="text" name="bill" />
 
           <label for="tip">Select Tip %</label>
-          <button id="tip" class="tip">5%</button>
-          <button id="tip" class="tip">10%</button>
-          <button id="tip" class="tip">15%</button>
-          <button id="tip" class="tip">25%</button>
-          <button id="tip" class="tip">50%</button>
+          <button id="tip" class="tip" data-tip="5">5%</button>
+          <button id="tip" class="tip" data-tip="10">10%</button>
+          <button id="tip" class="tip" data-tip="15">15%</button>
+          <button id="tip" class="tip" data-tip="20">25%</button>
+          <button id="tip" class="tip" data-tip="25">50%</button>
           <button>Custom</button>
 
           <label for="people">Number of People</label>
@@ -36,7 +36,7 @@
             name="people"
             type="number"
             id="people"
-            onkeyup="annotate()"
+            
           />
         </section>
 
@@ -44,7 +44,7 @@
           <p>Tip Amount</p>
           <p>/ person</p>
           <p id="tipAmount">0.00</p>
-
+          <!-- <div class="result" id="output"></div> -->
           <p>Total</p>
           <p>/ person</p>
           <p id="displayedAmount">0.00</p>
