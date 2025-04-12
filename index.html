@@ -14,35 +14,47 @@
 
     <title>Tip calculator app</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script defer src="./js/script.js"></script>
   </head>
   <body>
     <main>
-      <article>
-        <section>
-          <label for="bill">Bill</label>
-          <input id="bill" type="number" name="bill" />
+      <article class="calculator flex">
+        <section class="calculator-section fields flex">
+          <div class="calculator__bill-field flex">
+            <label for="bill">Bill</label>
+            <input id="bill" type="number" name="bill" class="text-in-fields" placeholder="0"/>
+          </div>
 
-          <label for="tip">Select Tip %</label>
-          <button id="tip" class="tip" data-tip="5">5%</button>
-          <button id="tip" class="tip" data-tip="10">10%</button>
-          <button id="tip" class="tip" data-tip="15">15%</button>
-          <button id="tip" class="tip" data-tip="20">25%</button>
-          <button id="tip" class="tip" data-tip="25">50%</button>
-          <button>Custom</button>
+          <div class="calculator__tip-field">
+            <label for="tip">Select Tip %</label>
+            <div class="buttons flex">
+              <button id="tip" class="tip text-in-fields" data-tip="5">5%</button>
+              <button id="tip" class="tip text-in-fields" data-tip="10">10%</button>
+              <button id="tip" class="tip text-in-fields" data-tip="15">15%</button>
+              <button id="tip" class="tip text-in-fields" data-tip="20">25%</button>
+              <button id="tip" class="tip text-in-fields" data-tip="25">50%</button>
+              <button class="tip-selector__custom">Custom</button>
+            </div>
+          </div>
 
-          <label for="people">Number of People</label>
-          <input
-            name="people"
-            type="number"
-            id="people"
-            max="25" 
-            min="1"
-            
-          />
+          <div class="calculator__people-field flex">
+            <label for="people">Number of People</label>
+            <input
+              name="people"
+              type="number"
+              id="people"
+              max="25" 
+              min="1"
+              class="text-in-fields"
+              placeholder="0"
+            />
+          </div>
         </section>
 
-        <section>
+        <section class="calculator-section results">
           <p>Tip Amount</p>
           <p>/ person</p>
           <p id="tipAmount">0.00</p>

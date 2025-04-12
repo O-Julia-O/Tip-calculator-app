@@ -1,24 +1,73 @@
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 1rem;
-    background-color: #f0f4f8;
+    font-family: "Space Mono", sans-serif;
+    background-color: #C5E4E7;
+    font-size: 16px;
+    font-weight: bold;
+    color: #5E7A7D;
 }
 
-.container {
-    max-width: 500px;
-    margin: 0 auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+main {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+label {
+    margin-bottom: 6px;
+}
+
+.flex {
     display: flex;
     flex-direction: column;
+}
+
+.calculator {
+    flex-direction: row;
+    background-color: white;
+    max-width: 920px;
+    padding: 32px;
+}
+
+.calculator-section {
+    gap: 40px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
     gap: 1rem;
+}
+
+.tip {
+    
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background-color: #004c4c;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.tip-selector__custom {
+    background-color: #f2f9f9;
+    color: #333;
+    border: 2px solid #ccc;
+}
+
+.text-in-fields {
+    font-family: "Space Mono", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 input {
@@ -31,21 +80,6 @@ input {
 
 input:hover {
     border-color: #0077ff;
-}
-
-button {
-    padding: 0.75rem;
-    background: #0077ff;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #005dc1;
-    cursor: pointer;
 }
 
 .tip.selected {
