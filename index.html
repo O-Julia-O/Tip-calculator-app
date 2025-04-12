@@ -1,71 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./images/favicon-32x32.png"
-    />
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+  <title>Tip Calculator App</title>
 
-    <title>Tip calculator app</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <script defer src="./js/script.js"></script>
-  </head>
-  <body>
-    <main>
-      <article class="calculator flex">
-        <section class="calculator-section fields flex">
-          <div class="calculator__bill-field flex">
-            <label for="bill">Bill</label>
-            <input id="bill" type="number" name="bill" class="text-in-fields" placeholder="0"/>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./css/style.css" />
+  <script defer src="./js/script.js"></script>
+</head>
+
+<body>
+  <main class="calculator">
+    <div class="calculator__container">
+      
+      <!-- Left section -->
+      <section class="calculator__inputs">
+        <!-- Bill input -->
+        <div class="field">
+          <label for="bill" class="field__label">Bill</label>
+          <input id="bill" type="number" name="bill" class="field__input" placeholder="0" autocomplete="off" min="0" />
+        </div>
+
+        <!-- Tip buttons -->
+        <div class="field">
+          <label class="field__label">Select Tip %</label>
+          <div class="tip-grid">
+            <button class="tip-btn" data-tip="5">5%</button>
+            <button class="tip-btn" data-tip="10">10%</button>
+            <button class="tip-btn" data-tip="15">15%</button>
+            <button class="tip-btn" data-tip="20">25%</button>
+            <button class="tip-btn" data-tip="25">50%</button>
+            <input type="number" class="tip-btn tip-btn--custom" placeholder="Custom" min="0" max="100" />
           </div>
+        </div>
 
-          <div class="calculator__tip-field">
-            <label for="tip">Select Tip %</label>
-            <div class="buttons flex">
-              <button id="tip" class="tip text-in-fields" data-tip="5">5%</button>
-              <button id="tip" class="tip text-in-fields" data-tip="10">10%</button>
-              <button id="tip" class="tip text-in-fields" data-tip="15">15%</button>
-              <button id="tip" class="tip text-in-fields" data-tip="20">25%</button>
-              <button id="tip" class="tip text-in-fields" data-tip="25">50%</button>
-              <button class="tip-selector__custom">Custom</button>
+        <!-- People input -->
+        <div class="field">
+          <label for="people" class="field__label">Number of People</label>
+          <input id="people" type="number" name="people" class="field__input" placeholder="1" min="1" max="25" value="1" />
+        </div>
+      </section>
+
+      <!-- Right section -->
+      <section class="calculator__results">
+        <div class="results__group">
+          <div class="results__item">
+            <div>
+              <p class="results__label">Tip Amount <span>/ person</span></p>
             </div>
+            <p class="results__value" id="tipAmount">$0.00</p>
           </div>
 
-          <div class="calculator__people-field flex">
-            <label for="people">Number of People</label>
-            <input
-              name="people"
-              type="number"
-              id="people"
-              max="25" 
-              min="1"
-              class="text-in-fields"
-              placeholder="0"
-            />
+          <div class="results__item">
+            <div>
+              <p class="results__label">Total <span>/ person</span></p>
+            </div>
+            <p class="results__value" id="displayedAmount">$0.00</p>
           </div>
-        </section>
+        </div>
 
-        <section class="calculator-section results">
-          <p>Tip Amount</p>
-          <p>/ person</p>
-          <p id="tipAmount">0.00</p>
-          <!-- <div class="result" id="output"></div> -->
-          <p>Total</p>
-          <p>/ person</p>
-          <p id="displayedAmount">0.00</p>
+        <button id="reset-btn" class="results__reset-btn">Reset</button>
+      </section>
 
-          <button id="reset-btn">Reset</button>
-        </section>
-      </article>
-    </main>
-  </body>
+    </div>
+  </main>
+</body>
 </html>

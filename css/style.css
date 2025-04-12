@@ -1,103 +1,184 @@
+/* === RESET === */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: "Space Mono", sans-serif;
-    background-color: #C5E4E7;
+  }
+  
+  body {
+    font-family: "Space Mono", monospace;
+    background-color: #c5e4e7;
     font-size: 16px;
     font-weight: bold;
-    color: #5E7A7D;
-}
-
-main {
+    color: #5e7a7d;
+  }
+  
+  /* === LAYOUT === */
+  main {
     display: grid;
     place-items: center;
     min-height: 100vh;
-}
-
-label {
-    margin-bottom: 6px;
-}
-
-.flex {
-    display: flex;
-    flex-direction: column;
-}
-
-.calculator {
-    flex-direction: row;
+  }
+  
+  .calculator__container {
     background-color: white;
     max-width: 920px;
-    padding: 32px;
-}
-
-.calculator-section {
-    gap: 40px;
-}
-
-.buttons {
+    width: 100%;
+    padding: 2rem;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  
+  /* === INPUTS === */
+  .calculator__inputs {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .field__label {
+    font-size: 0.9rem;
+  }
+  
+  .field__input {
+    font-family: inherit;
+    padding: 0.75rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00474b;
+    background-color: #f3fafa;
+    transition: border 0.3s ease;
+  }
+  
+  .field__input:focus,
+  .field__input:hover {
+    border-color: #26c2ae;
+    outline: none;
+  }
+  
+  /* === TIP SELECTOR === */
+  .tip-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-}
-
-.tip {
-    
-    padding: 1rem;
+  }
+  
+  .tip-btn {
+    font-family: inherit;
+    padding: 0.75rem;
     font-size: 1.2rem;
     font-weight: bold;
     border: none;
     border-radius: 8px;
-    background-color: #004c4c;
+    background-color: #00474b;
     color: white;
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.tip-selector__custom {
-    background-color: #f2f9f9;
-    color: #333;
+    transition: background-color 0.2s ease;
+  }
+  
+  .tip-btn:hover {
+    background-color: #26c2ae;
+    color: #00474b;
+  }
+  
+  .tip-btn--active {
+    background-color: #26c2ae;
+    color: #00474b;
+  }
+  
+  .tip-btn--custom {
+    background-color: #f3fafa;
+    color: #00474b;
     border: 2px solid #ccc;
-}
-
-.text-in-fields {
-    font-family: "Space Mono", sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-}
-
-input {
-    padding: 0.75rem;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border 0.3s;
-}
-
-input:hover {
-    border-color: #0077ff;
-}
-
-.tip.selected {
-    background-color: green;
-}
-
-.result {
+    text-align: center;
+  }
+  
+  /* === RESULTS === */
+  .calculator__results {
+    flex: 1 1 300px;
+    background-color: #00474b;
+    padding: 2rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .results__group {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .results__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .results__label {
+    color: white;
+    font-size: 0.9rem;
+  }
+  
+  .results__label span {
+    display: block;
+    font-size: 0.75rem;
+    color: #7f9d9f;
+  }
+  
+  .results__value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #26c2ae;
+  }
+  
+  /* === RESET BUTTON === */
+  .results__reset-btn {
+    font-family: inherit;
+    margin-top: 2rem;
+    background-color: #26c2ae;
+    color: #00474b;
+    border: none;
+    padding: 1rem;
     font-size: 1.2rem;
     font-weight: bold;
-    color: #333;
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .results__reset-btn:hover {
+    background-color: #9fe8df;
+  }
+  
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .calculator__container {
+      flex-direction: column;
+      gap: 2rem;
+      padding: 1.5rem;
     }
-
-    input, button {
-        font-size: 0.95rem;
+  
+    .tip-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
-}
+  
+    .results__value {
+      font-size: 2rem;
+    }
+  }
+  

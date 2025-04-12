@@ -1,90 +1,92 @@
-const tipBtns = document.querySelectorAll(".tip");
-const fieldsAll = document.querySelectorAll("input");
-const resetBtn = document.getElementById("reset-btn");
-
+// === DOM Elements ===
 const billInput = document.getElementById('bill');
 const peopleInput = document.getElementById('people');
-const output = document.getElementById('tipAmount');
-const output2 = document.getElementById('displayedAmount');
+const tipButtons = document.querySelectorAll('.tip-btn:not(.tip-btn--custom)');
+const customTipInput = document.querySelector('.tip-btn--custom');
+const tipAmountOutput = document.getElementById('tipAmount');
+const totalOutput = document.getElementById('displayedAmount');
+const resetBtn = document.getElementById('reset-btn');
 
 let selectedTip = 0;
 
-
-/* event listener tipBtns */
-tipBtns.forEach(button => {
-    /* adding listener on every button */
-    button.addEventListener("click", () => {
-        clearPersentange();
-        selectedTip = parseFloat(button.dataset.tip);
-        addingClassName(button, "selected");
-        calculate();
-    });
+// === Handle Tip Button Clicks ===
+tipButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    clearActiveTips();
+    button.classList.add('tip-btn--active');
+    selectedTip = parseFloat(button.dataset.tip);
+    customTipInput.value = ''; 
+    calculate();
+  });
 });
 
-/* event listener button RESET */
-resetBtn.addEventListener("click", reset);
+// === Handle Custom Tip Input ===
+customTipInput.addEventListener('input', () => {
+  clearActiveTips();
+  const customValue = parseFloat(customTipInput.value);
+  selectedTip = isNaN(customValue) ? 0 : customValue;
+  calculate();
+});
 
-
-/* checks for any updates */
+// === Handle Bill & People Input ===
 [billInput, peopleInput].forEach(input => {
-    input.addEventListener("input", () => {
-        if (billInput.value.length > 10) {
-            bill.value = billInput.value.slice(0, 10);
-        }
-
-        if (peopleInput.value > 25) {
-            peopleInput.value = 25;
-        } 
-        
-        if (peopleInput.value < 0) {
-            peopleInput.value = 1;
-        }
-    
-        /* if (peopleInput.value.length > 10) {
-            peopleInput.value = peopleInput.value.slice(0, 10);
-        } */
-
-        calculate();
-    });
+  input.addEventListener('input', () => {
+    limitInputValues();
+    calculate();
+  });
 });
 
-function addingClassName(item, className) {
-    item.classList.add(className);
+// === Handle Reset Button ===
+resetBtn.addEventListener('click', () => {
+  billInput.value = '';
+  peopleInput.value = '1';
+  customTipInput.value = '';
+  selectedTip = 0;
+  clearActiveTips();
+  updateDisplay(0, 0);
+});
+
+// === Clear Active Button States ===
+function clearActiveTips() {
+  tipButtons.forEach(btn => btn.classList.remove('tip-btn--active'));
 }
 
-function clearPersentange() {
-    /* delete class from others buttons */
-    tipBtns.forEach(button => {
-        button.classList.remove("selected");
-    });
+// === Limit Inputs (sanity checks) ===
+function limitInputValues() {
+  //max 6 numbers
+  if (billInput.value.length > 6) {
+    billInput.value = billInput.value.slice(0, 6);
+  }
+
+  // from 1 to 25
+  const peopleVal = parseInt(peopleInput.value);
+  if (peopleVal > 25) {
+    peopleInput.value = 25;
+  } else if (peopleVal < 1 || isNaN(peopleVal)) {
+    peopleInput.value = 1;
+  }
 }
 
-/* button reset */
-function reset() {
-    fieldsAll.forEach(field => {
-        field.value = "";
-    });
-
-    clearPersentange();
-    output.textContent = `0`;
-    output2.textContent = `0`;
-}
-
-/* calculate */
+// === Main function ===
 function calculate() {
-    const bill = parseFloat(billInput.value);
-    const people = parseInt(peopleInput.value);
+  const bill = parseFloat(billInput.value);
+  const people = parseInt(peopleInput.value);
 
-    if (isNaN(bill) || isNaN(people) || people <= 0 || selectedTip === 0) {
-      output.textContent = "Please fill all fields and select tip.";
-      output2.textContent = "Please fill all fields and select tip.";
-      return;
-    }
+  if (isNaN(bill) || isNaN(people) || people <= 0 || selectedTip === 0) {
+    updateDisplay(0, 0);
+    return;
+  }
 
-    const tipAmount = bill * (selectedTip / 100);
-    const total = bill + tipAmount;
-    const perPerson = total / people;
+  const tipAmount = bill * (selectedTip / 100);
+  const total = bill + tipAmount;
+  const tipPerPerson = tipAmount / people;
+  const totalPerPerson = total / people;
 
-    output.textContent = `Each person pays: $${perPerson.toFixed(2)}`;
-    output2.textContent = `Total: $${total.toFixed(2)}`;
+  updateDisplay(tipPerPerson, totalPerPerson);
+}
+
+// === Uodating DOM ===
+function updateDisplay(tip, total) {
+  tipAmountOutput.textContent = "$" + tip.toFixed(2);
+  totalOutput.textContent = "$" + total.toFixed(2);
 }
