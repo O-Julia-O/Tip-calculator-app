@@ -9,6 +9,8 @@ const output2 = document.getElementById('displayedAmount');
 
 let selectedTip = 0;
 
+
+/* event listener tipBtns */
 tipBtns.forEach(button => {
     /* adding listener on every button */
     button.addEventListener("click", () => {
@@ -19,12 +21,21 @@ tipBtns.forEach(button => {
     });
 });
 
+/* event listener button RESET */
 resetBtn.addEventListener("click", reset);
 
 
 /* checks for any updates */
 [billInput, peopleInput].forEach(input => {
     input.addEventListener("input", () => {
+        if (billInput.value.length > 10) {
+            bill.value = billInput.value.slice(0, 10);
+        }
+    
+        if (peopleInput.value.length > 10) {
+            peopleInput.value = peopleInput.value.slice(0, 10);
+        }
+        
         calculate();
     });
 });
@@ -40,6 +51,7 @@ function clearPersentange() {
     });
 }
 
+/* button reset */
 function reset() {
     fieldsAll.forEach(field => {
         field.value = "";
@@ -50,6 +62,7 @@ function reset() {
     output2.textContent = `0`;
 }
 
+/* calculate */
 function calculate() {
     const bill = parseFloat(billInput.value);
     const people = parseInt(peopleInput.value);
