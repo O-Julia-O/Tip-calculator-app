@@ -31,11 +31,19 @@ resetBtn.addEventListener("click", reset);
         if (billInput.value.length > 10) {
             bill.value = billInput.value.slice(0, 10);
         }
-    
-        if (peopleInput.value.length > 10) {
-            peopleInput.value = peopleInput.value.slice(0, 10);
-        }
+
+        if (peopleInput.value > 25) {
+            peopleInput.value = 25;
+        } 
         
+        if (peopleInput.value < 0) {
+            peopleInput.value = 1;
+        }
+    
+        /* if (peopleInput.value.length > 10) {
+            peopleInput.value = peopleInput.value.slice(0, 10);
+        } */
+
         calculate();
     });
 });
