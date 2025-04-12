@@ -46,6 +46,8 @@ function reset() {
     });
 
     clearPersentange();
+    output.textContent = `0`;
+    output2.textContent = `0`;
 }
 
 function calculate() {
@@ -54,6 +56,7 @@ function calculate() {
 
     if (isNaN(bill) || isNaN(people) || people <= 0 || selectedTip === 0) {
       output.textContent = "Please fill all fields and select tip.";
+      output2.textContent = "Please fill all fields and select tip.";
       return;
     }
 
